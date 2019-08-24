@@ -1,14 +1,42 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>PitchFinder</title>
-  <base href="/">
+  <head>
+    <meta charset="utf-8" />
+    <title>PitchFinder</title>
+    <base href="/" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
-  <app-root></app-root>
-</body>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-1.11.3.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"
+    />
+  </head>
+  <body>
+    <app-root></app-root>
+  </body>
+
+  <script>
+    $(document).ready(function() {
+      var startsId_input = $('input[name="startsId"]');
+      var endsId_input = $('input[name="endsId"]');
+      var container = $("form").length > 0 ? $("form").parent() : "body";
+      var options = {
+        format: "yyyy-mm-dd",
+        container: container,
+        todayHighlight: true,
+        autoclose: true
+      };
+      startsId_input.datepicker(options);
+      endsId_input.datepicker(options);
+    });
+  </script>
 </html>

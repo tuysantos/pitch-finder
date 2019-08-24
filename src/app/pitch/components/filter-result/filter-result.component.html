@@ -1,3 +1,13 @@
-<p>
-  filter-result works!
-</p>
+<div class="container filter-result">
+  <div class="result-wrapper" *ngFor="let pitch of pitches; trackBy: trackByFn">
+    <app-pitch-card
+      [slotId]="pitch.id"
+      [startDate]="pitch.attributes.starts"
+      [endDate]="pitch.attributes.ends"
+      [price]="pitch.attributes.price"
+      [currency]="pitch.attributes.currency"
+      [availabilities]="pitch.attributes.availabilities"
+      [exchangeRate]="exchangeRate"
+    ></app-pitch-card>
+  </div>
+</div>

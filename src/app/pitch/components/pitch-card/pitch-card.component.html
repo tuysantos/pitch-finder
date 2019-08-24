@@ -1,0 +1,70 @@
+<div class="card-wrapper">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="section-pitch">
+        Slot Id: <span>{{ slotId }}</span>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <div class="section-pitch">
+        Availabilities: <span>{{ availabilities }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="section-pitch">
+        Start Date:
+        <span>{{ startDate | dateFormatPipe }}</span>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <div class="section-pitch">
+        Duration:
+        <span>{{ startDate | durationPipe: endDate }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="section-pitch">
+        Price: <span>{{ price | currency: currency }}</span>
+      </div>
+    </div>
+    <div class="col-sm-12">
+      <div class="section-pitch">
+        Converted Price:
+        <span>{{
+          price | currencyConverterPipe: exchangeRate | currency: "EUR"
+        }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="section-wrapper">
+    <div class="section-item">
+      Slot Id: <span>{{ slotId }}</span>
+    </div>
+    <div class="section-item">
+      Availabilities: <span>{{ availabilities }}</span>
+    </div>
+  </div> -->
+  <!-- <div class="section-wrapper">
+    <div class="section-item">
+      Start Date: <span>{{ startDate }}</span>
+    </div>
+    <div class="section-item">
+      Duration: <span>{{ duration }}</span>
+    </div>
+  </div> -->
+  <!-- <div class="section-wrapper">
+    <div class="section-item">
+      Price: £<span>{{ price }}</span>
+    </div>
+    <div class="section-item">
+      Price: €<span>{{ convertedPrice }}</span>
+    </div>
+  </div> -->
+</div>

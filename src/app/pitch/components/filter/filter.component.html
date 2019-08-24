@@ -1,3 +1,53 @@
-<p>
-  filter works!
-</p>
+<div class="container filter-wraper">
+  <div class="row">
+    <div class="col-sm-12">
+      <form [formGroup]="filterForm" class="form-inline" autocomplete="off">
+        <div class="form-group">
+          <label for="pitchId">Pitch Id</label>
+          <input
+            type="text"
+            class="form-control default-size"
+            id="pitchId"
+            placeholder="Pitch Id"
+            formControlName="PitchId"
+          />*
+        </div>
+        <div class="form-group">
+          <label for="startsId">Starts</label>
+          <input
+            type="text"
+            class="form-control default-size"
+            id="startsId"
+            name="startsId"
+            placeholder="YYY-MM-DD"
+            #startDateRef
+            (blur)="copyData('StartsId')"
+          />*
+          <input type="hidden" value="" formControlName="StartsId" />
+        </div>
+
+        <div class="form-group">
+          <label for="endsId">Ends</label>
+          <input
+            type="text"
+            class="form-control default-size"
+            id="endsId"
+            name="endsId"
+            placeholder="YYY-MM-DD"
+            #endDateRef
+            (blur)="copyData('EndsId')"
+          />*
+          <input type="hidden" value="" formControlName="EndsId" />
+        </div>
+
+        <button type="button" class="btn btn-primary" (click)="filterData()">
+          Filter
+        </button>
+      </form>
+    </div>
+    <div class="col-sm-12">
+      <span id="spErrorMessage" class="error-message">{{ errorMessage }}</span>
+      <!-- <input type="text" name="EndsId1" value="" formControlName="EndsId" /> -->
+    </div>
+  </div>
+</div>

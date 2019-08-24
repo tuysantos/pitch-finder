@@ -1,6 +1,7 @@
 export class IResult {
   meta: ICriteria;
   data: IPitch[];
+  error: IError;
 }
 
 export class ICriteria {
@@ -28,4 +29,15 @@ export class IAttributes {
   admin_fee: string;
   currency: string;
   availabilities: number;
+}
+
+export class IFilterSearch {
+  id: string;
+  starts: string;
+  ends: string;
+}
+
+export class IError {
+  errorNum: number;
+  message: string;
 }
