@@ -3,7 +3,6 @@ import { Routes, RouterModule } from "@angular/router";
 
 const routes: Routes = [
   { path: "", redirectTo: "/pitches", pathMatch: "full" }
-  //{ path: "**", redirectTo: "/pitches" }
 ];
 
 @NgModule({
