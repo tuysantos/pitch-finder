@@ -7,9 +7,8 @@ import { PaginationComponent } from "./core/components/pagination/pagination.com
 import { PitchModule } from "./pitch/pitch.module";
 
 @NgModule({
-  declarations: [AppComponent, PaginationComponent],
+  declarations: [AppComponent],
   imports: [BrowserModule, AppRoutingModule, PitchModule],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

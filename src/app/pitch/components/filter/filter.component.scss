@@ -1,0 +1,31 @@
+.filter-wraper {
+  font-size: 16px;
+
+  .default-size {
+    width: 150px;
+    font-size: 12px;
+    padding-top: 0.1rem;
+    padding-right: 0.75rem;
+    padding-bottom: 0.1rem;
+    padding-left: 0.75rem;
+  }
+
+  .form-group {
+    label {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+  }
+
+  button {
+    margin-left: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+
+  .error-message {
+    color: red;
+    font-size: 14px;
+    font-weight: 900;
+  }
+}

@@ -1,0 +1,33 @@
+.pagination-container {
+  .no-decoration {
+    text-decoration: none;
+  }
+
+  .block-invisible {
+    display: none;
+  }
+
+  .block-visible {
+    display: inline;
+  }
+
+  .disabled {
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  nav {
+    .total-pages {
+      color: blue;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 16px;
+      font-weight: 700;
+      float: right;
+      @media only screen and (min-width: 700px) {
+        position: absolute;
+        top: 25px;
+        right: 10px;
+      }
+    }
+  }
+}

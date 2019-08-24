@@ -1,6 +1,43 @@
-<p>
-  pitches works!
-</p>
-<app-filter></app-filter>
-<p></p>
-<app-filter-result></app-filter-result>
+<div class="container pitches-wrapper">
+  <div class="row">
+    <div class="col-sm-12 pitch-title">
+      <span id="spMainTitle" class="spTitle">List of Pitches</span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <fieldset class="fieldset-wrapper">
+        <legend>Filter Criteria:</legend>
+        <app-filter (filterEvent)="filterData($event)"></app-filter>
+      </fieldset>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <app-filter-result
+        [pitches]="pagePitches"
+        [exchangeRate]="exchangeRate"
+      ></app-filter-result>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="errorsFound">
+    <div class="col-sm-12">
+      <div class="Error-api">
+        <span>{{ serverErrorMessage }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" [hidden]="totalRecords < 10">
+    <div class="col-sm-12">
+      <app-pagination
+        [pageSize]="pageSize"
+        [totalItems]="totalRecords"
+        (pageChanged)="pageChanged($event)"
+      ></app-pagination>
+    </div>
+  </div>
+</div>

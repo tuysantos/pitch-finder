@@ -1,0 +1,27 @@
+.card-wrapper {
+  background-color: #fff;
+  border: 1px solid #fff;
+  border-radius: 15px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 20px;
+  margin: 20px;
+  display: inline-block;
+  max-width: 500px;
+  text-align: left;
+
+  .section-pitch {
+    font-weight: 900;
+    display: block;
+    span {
+      font-weight: 500;
+    }
+  }
+
+  .card-slot {
+    display: block;
+    text-align: left;
+    margin-bottom: 10px;
+  }
+}

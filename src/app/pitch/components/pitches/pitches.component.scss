@@ -1,0 +1,29 @@
+.pitches-wrapper {
+  .fieldset-wrapper {
+    border: 2px solid #000;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+  }
+
+  .pitch-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 900;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+
+  .Error-api {
+    color: red;
+    font-weight: 900;
+    font-size: 20px;
+    text-align: center;
+    border: 2px solid red;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    width: 300px;
+    height: 100px;
+    padding-top: 60px;
+  }
+}
