@@ -7,6 +7,7 @@ import {
 import { PitchService } from "./pitch.service";
 import { IResult } from "src/app/core/model/interfaces";
 import { environment } from "src/environments/environment";
+import { of } from "rxjs/internal/observable/of";
 
 describe("PitchService", () => {
   let pitchService: PitchService;
@@ -192,7 +193,8 @@ describe("PitchService", () => {
           availabilities: 4
         }
       }
-    ]
+    ],
+    error: { errorNum: 0, message: "" }
   };
 
   beforeEach(() => {
@@ -220,7 +222,7 @@ describe("PitchService", () => {
       const starts = "2018-01-09";
       const ends = "2018-01-15";
       service.getPitches(pitchId, starts, ends).subscribe(result => {
-        expect(result.meta.total_items).toEqual(13);
+        expect(result.meta.total_items).toEqual(14);
         expect(result).toEqual(pitchMock);
       });
 
@@ -238,21 +240,20 @@ describe("PitchService", () => {
       const ErrorObj = {
         type: "ERROR",
         status: 404,
-        body: JSON.stringify({ color: `red` })
+        body: "Not Found"
       };
 
-      const pitchId = "32990";
+      const pitchId = "11111";
       const starts = "2018-01-09";
       const ends = "2018-01-15";
 
       service.getPitches(pitchId, starts, ends).subscribe(data => {
-        console.log(`in success:`, data);
         expect(of(data)).toBeTruthy();
         expect(data).not.toBeNull();
       });
 
       const req = httpMock.expectOne(
-        `${environment.apiEndPoint}/pitches/${pitchId}/slots?filter[startsxx]=${starts}&filter[endsxx]=${ends}`
+        `${environment.apiEndPoint}/pitches/${pitchId}/slots?filter[starts]=${starts}&filter[ends]=${ends}`
       );
       expect(req.request.method).toEqual("GET");
       req.flush(ErrorObj);

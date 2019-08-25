@@ -43,4 +43,12 @@ describe("PaginationComponent", () => {
     expect(component.pageChanged.emit).toHaveBeenCalled();
     expect(component.pageChanged.emit).toHaveBeenCalledWith(2);
   });
+
+  it("should display total of pages", () => {
+    const divElement: DebugElement = fixture.debugElement.query(
+      By.css("div[id=totalPages]")
+    );
+    fixture.detectChanges();
+    expect(divElement.nativeElement.innerText).toBe("Total Pages: 2");
+  });
 });
