@@ -6,9 +6,8 @@ import { FilterResultComponent } from "./components/filter-result/filter-result.
 import { HttpClientModule } from "@angular/common/http";
 import { Routes, RouterModule } from "@angular/router";
 import { PitchesComponent } from "./components/pitches/pitches.component";
-import { PaginationComponent } from "../core/components/pagination/pagination.component";
 import { CoreModule } from "../core/core.module";
-import { PitchCardComponent } from './components/pitch-card/pitch-card.component';
+import { PitchCardComponent } from "./components/pitch-card/pitch-card.component";
 
 const pitchRoutes: Routes = [
   { path: "pitches", component: PitchesComponent },
@@ -17,7 +16,12 @@ const pitchRoutes: Routes = [
 ];
 
 @NgModule({
-  declarations: [FilterComponent, FilterResultComponent, PitchesComponent, PitchCardComponent],
+  declarations: [
+    FilterComponent,
+    FilterResultComponent,
+    PitchesComponent,
+    PitchCardComponent
+  ],
   imports: [
     CommonModule,
     HttpClientModule,

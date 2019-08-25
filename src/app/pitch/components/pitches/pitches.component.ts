@@ -34,7 +34,6 @@ export class PitchesComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    //console.log("navigator.userAgent", navigator.userAgent);
     this.errorsFound = false;
     this.serverErrorMessage = "";
     this.hasParameters() ? this.refreshedData() : "";
@@ -75,10 +74,9 @@ export class PitchesComponent implements OnInit, OnDestroy {
           this.pageChanged(1);
         }
 
-        if (result.meta.total_items === 0) {
+        if (result.meta.total_items === 0 && result.error.errorNum !== 0) {
           this.errorsFound = true;
           this.serverErrorMessage = `${result.error.errorNum} - ${result.error.message}`;
-          console.log("error", result.error);
         }
       });
   }
@@ -92,7 +90,6 @@ export class PitchesComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log("destroy called");
     this.subscription.unsubscribe();
   }
 }

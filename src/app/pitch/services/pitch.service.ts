@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs/internal/Observable";
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { map, catchError, share } from "rxjs/operators";
 import { IPitch, IResult } from "src/app/core/model/interfaces";
@@ -17,7 +17,7 @@ export class PitchService {
       filter: null
     },
     data: [],
-    error: { errorNum: 404, message: "Server error" }
+    error: { errorNum: 0, message: "" }
   };
 
   constructor(private http: HttpClient) {}
@@ -38,7 +38,6 @@ export class PitchService {
 
   private handleError<T>(operation = "operation", result?: T) {
     return (error: any): Observable<T> => {
-      console.error("server error", error.error.errors);
       const arrayErrors = error.error.errors;
       if (arrayErrors.length > 0) {
         this.errorObj.error = {
