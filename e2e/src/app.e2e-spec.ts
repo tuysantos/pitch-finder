@@ -11,7 +11,7 @@ describe("workspace-project App", () => {
   });
 
   it("should return invalid search - mandatory fields", async () => {
-    page.navigateTo("/pitches/32990/2018-01-09/2018-01-15");
+    page.navigateTo("/pitches");
     let pitchId = page.getPitchId();
     pitchId.sendKeys("92300");
 
@@ -28,7 +28,7 @@ describe("workspace-project App", () => {
   });
 
   it("should return invalid pitch Id", async () => {
-    page.navigateTo("/pitches/32990/2018-01-09/2018-01-15");
+    page.navigateTo("/pitches");
     let pitchId = page.getPitchId();
     pitchId.sendKeys("RRRRR34");
 
@@ -45,7 +45,7 @@ describe("workspace-project App", () => {
   });
 
   it("should return invalid date range", async () => {
-    page.navigateTo("/pitches/32990/2018-01-09/2018-01-15");
+    page.navigateTo("/pitches");
     let pitchId = page.getPitchId();
     pitchId.sendKeys("32990");
 
@@ -62,7 +62,7 @@ describe("workspace-project App", () => {
   });
 
   it("should return error date2 should be greather", async () => {
-    page.navigateTo("/pitches/32990/2018-01-09/2018-01-15");
+    page.navigateTo("/pitches");
     let pitchId = page.getPitchId();
     pitchId.sendKeys("32990");
 
@@ -78,38 +78,14 @@ describe("workspace-project App", () => {
     expect(page.getErrorFilter()).toEqual(errors.END_DATE_GREATER);
   });
 
-  it("should return data", async () => {
+  it("should load data from the url parameters", async () => {
     page.navigateTo("/pitches/32990/2018-01-09/2018-01-15");
-    let pitchId = page.getPitchId();
-    pitchId.sendKeys("32990");
-
-    let startDate = page.getStartDate();
-    startDate.sendKeys("2018-01-09");
-
-    let endDate = page.getEndDate();
-    endDate.sendKeys("2018-01-15");
-
-    browser.sleep(1000);
-    await page.getBtnSearch().click();
-    browser.sleep(5000);
-
     let pitches = await page.getPitches();
     expect(pitches.length).toBeGreaterThan(0);
   });
 
   it("should go to next page", async () => {
     page.navigateTo("/pitches/32990/2018-01-09/2018-01-15");
-    let pitchId = page.getPitchId();
-    pitchId.sendKeys("32990");
-
-    let startDate = page.getStartDate();
-    startDate.sendKeys("2018-01-09");
-
-    let endDate = page.getEndDate();
-    endDate.sendKeys("2018-01-15");
-
-    browser.sleep(1000);
-    await page.getBtnSearch().click();
     browser.sleep(5000);
 
     await page.getPages()[1].click();
@@ -120,18 +96,7 @@ describe("workspace-project App", () => {
   });
 
   it("should return no data", async () => {
-    page.navigateTo("/pitches/32990/2018-01-09/2018-01-15");
-    let pitchId = page.getPitchId();
-    pitchId.sendKeys("11111");
-
-    let startDate = page.getStartDate();
-    startDate.sendKeys("2018-01-09");
-
-    let endDate = page.getEndDate();
-    endDate.sendKeys("2018-01-15");
-
-    browser.sleep(1000);
-    await page.getBtnSearch().click();
+    page.navigateTo("/pitches/111111/2018-01-09/2018-01-15");
     browser.sleep(5000);
 
     let pitches = await page.getPitches();

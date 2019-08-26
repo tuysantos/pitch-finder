@@ -34,18 +34,12 @@ export class PitchesComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.errorsFound = false;
-    this.serverErrorMessage = "";
-    this.pagePitches = [];
-    this.totalRecords = 0;
+    this.resetDefaults();
     this.hasParameters() ? this.refreshedData() : "";
   }
 
   filterData(data: IFilterSearch): void {
-    this.serverErrorMessage = "";
-    this.errorsFound = false;
-    this.pagePitches = [];
-    this.totalRecords = 0;
+    this.resetDefaults();
     this.route.navigate(["/pitches", data.id, data.starts, data.ends]);
     this.getPitches(data.id, data.starts, data.ends);
   }
@@ -91,6 +85,13 @@ export class PitchesComponent implements OnInit, OnDestroy {
           this.serverErrorMessage = err;
         }
       );
+  }
+
+  resetDefaults(): void {
+    this.pagePitches = [];
+    this.totalRecords = 0;
+    this.errorsFound = false;
+    this.serverErrorMessage = "";
   }
 
   pageChanged(event) {
