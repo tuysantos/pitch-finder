@@ -36,10 +36,16 @@ export class PitchesComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.errorsFound = false;
     this.serverErrorMessage = "";
+    this.pagePitches = [];
+    this.totalRecords = 0;
     this.hasParameters() ? this.refreshedData() : "";
   }
 
   filterData(data: IFilterSearch): void {
+    this.serverErrorMessage = "";
+    this.errorsFound = false;
+    this.pagePitches = [];
+    this.totalRecords = 0;
     this.route.navigate(["/pitches", data.id, data.starts, data.ends]);
     this.getPitches(data.id, data.starts, data.ends);
   }
@@ -65,20 +71,27 @@ export class PitchesComponent implements OnInit, OnDestroy {
     this.subscription = this.pitchService
       .getPitches(id, start, end)
       .pipe()
-      .subscribe((result: IResult) => {
-        this.pitches = result.data;
-        this.criteria = result.meta;
+      .subscribe(
+        (result: IResult) => {
+          console.log("result", result);
+          this.pitches = result.data;
+          this.criteria = result.meta;
 
-        this.totalRecords = this.criteria.total_items;
-        if (this.totalRecords > 0) {
-          this.pageChanged(1);
-        }
-
-        if (result.meta.total_items === 0 && result.error.errorNum !== 0) {
+          this.totalRecords = this.criteria.total_items;
+          if (this.totalRecords > 0) {
+            this.pageChanged(1);
+          }
+          if (result.meta.total_items === 0) {
+            this.errorsFound = true;
+            this.serverErrorMessage = "400 - No records";
+          }
+        },
+        (err: any) => {
+          this.pitches = [];
           this.errorsFound = true;
-          this.serverErrorMessage = `${result.error.errorNum} - ${result.error.message}`;
+          this.serverErrorMessage = "404 - Not Found";
         }
-      });
+      );
   }
 
   pageChanged(event) {

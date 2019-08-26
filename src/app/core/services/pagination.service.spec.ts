@@ -1,7 +1,5 @@
 import { TestBed } from "@angular/core/testing";
-
 import { PaginationService } from "./pagination.service";
-import { servicesVersion } from "typescript";
 import { IPitch } from "../model/interfaces";
 
 describe("PaginationService", () => {
