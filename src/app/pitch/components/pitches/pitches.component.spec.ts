@@ -6,8 +6,6 @@ import { FilterComponent } from "../filter/filter.component";
 import { FilterResultComponent } from "../filter-result/filter-result.component";
 import { PaginationComponent } from "src/app/core/components/pagination/pagination.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { DebugElement } from "@angular/core";
-import { By } from "@angular/platform-browser";
 import { Observable } from "rxjs/internal/Observable";
 import { of } from "rxjs/internal/observable/of";
 import { DurationPipe } from "src/app/core/pipes/duration";
@@ -296,7 +294,7 @@ describe("PitchesComponent", () => {
     component.getPitches("1111", "2018-01-09", "2018-01-15");
     fixture.detectChanges();
     expect(component.pagePitches.length).toBe(0);
-    expect(component.serverErrorMessage).toBe("404 - Not Found");
+    expect(component.serverErrorMessage).toBe("400 - No records");
   });
 
   it("should display the correct title", () => {
