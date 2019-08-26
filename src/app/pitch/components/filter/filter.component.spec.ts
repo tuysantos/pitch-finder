@@ -3,8 +3,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { DebugElement } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { FilterComponent } from "./filter.component";
-import * as Errors from "src/app/core/model/error-enum";
-import { IFilterSearch } from "src/app/core/model/interfaces";
+import * as Errors from "src/app/pitch/model/error-enum";
+import { IFilterSearch } from "src/app/pitch/model/interfaces";
 
 describe("FilterComponent", () => {
   let component: FilterComponent;
@@ -15,12 +15,16 @@ describe("FilterComponent", () => {
 
   class ComponentForm {
     fillForm(pitchId: string, startDate: string, endDate: string): void {
+      component.startDateElementRef.nativeElement.value = startDate;
+      component.endDateElementRef.nativeElement.value = endDate;
       component.filterForm.controls["PitchId"].setValue(pitchId);
       component.filterForm.controls["StartsId"].setValue(startDate);
       component.filterForm.controls["EndsId"].setValue(endDate);
     }
 
     resetForm(): void {
+      component.startDateElementRef.nativeElement.value = "";
+      component.endDateElementRef.nativeElement.value = "";
       component.filterForm.controls["PitchId"].setValue("");
       component.filterForm.controls["StartsId"].setValue("");
       component.filterForm.controls["EndsId"].setValue("");
@@ -90,6 +94,16 @@ describe("FilterComponent", () => {
     btnElement.nativeElement.click();
     fixture.detectChanges();
     expect(spanElement.nativeElement.innerText).toBe(Errors.INVALID_PITCH_ID);
+  });
+
+  it("Should display error message 'Invalid sarte date or end date'", () => {
+    componentForm = new ComponentForm();
+    componentForm.init();
+    componentForm.resetForm();
+    componentForm.fillForm("90000", "xxxxxxx", "2001-05-15");
+    btnElement.nativeElement.click();
+    fixture.detectChanges();
+    expect(spanElement.nativeElement.innerText).toBe(Errors.INVALID_DATES);
   });
 
   it("Should display error message 'End date should be greater then start date'", () => {

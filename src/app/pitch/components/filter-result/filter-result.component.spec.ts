@@ -6,7 +6,8 @@ import { PitchCardComponent } from "../pitch-card/pitch-card.component";
 import { DateFormatPipe } from "src/app/core/pipes/dateFormat";
 import { DurationPipe } from "src/app/core/pipes/duration";
 import { CurrencyConverterPipe } from "src/app/core/pipes/currencyConverter";
-import { IPitch } from "src/app/core/model/interfaces";
+import { IPitch } from "src/app/pitch/model/interfaces";
+import { pitchMockResults } from "../../pitch-fixture";
 
 describe("FilterResultComponent", () => {
   let component: FilterResultComponent;
@@ -15,44 +16,7 @@ describe("FilterResultComponent", () => {
 
   class PitchesMock {
     getPitches(): IPitch[] {
-      return [
-        {
-          type: "slots",
-          id: "446273",
-          attributes: {
-            starts: "2018-01-09T09:20:00+00:00",
-            ends: "2018-01-09T10:00:00+00:00",
-            price: "9.90",
-            admin_fee: "0.00",
-            currency: "GBP",
-            availabilities: 4
-          }
-        },
-        {
-          type: "slots",
-          id: "446274",
-          attributes: {
-            starts: "2018-01-09T10:20:00+00:00",
-            ends: "2018-01-09T10:40:00+00:00",
-            price: "10.90",
-            admin_fee: "0.00",
-            currency: "GBP",
-            availabilities: 1
-          }
-        },
-        {
-          type: "slots",
-          id: "446275",
-          attributes: {
-            starts: "2018-01-09T11:00:00+00:00",
-            ends: "2018-01-09T11:40:00+00:00",
-            price: "12.90",
-            admin_fee: "0.00",
-            currency: "GBP",
-            availabilities: 2
-          }
-        }
-      ];
+      return pitchMockResults;
     }
   }
 
@@ -73,6 +37,7 @@ describe("FilterResultComponent", () => {
     component = fixture.componentInstance;
     pitchesMock = new PitchesMock();
     component.exchangeRate = "1.13";
+    component.convertedCurrency = "EUR";
     component.pitches = pitchesMock.getPitches();
     fixture.detectChanges();
   });

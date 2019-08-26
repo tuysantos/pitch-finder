@@ -7,8 +7,8 @@ import {
   EventEmitter
 } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { IFilterSearch } from "src/app/core/model/interfaces";
-import * as Errors from "src/app/core/model/error-enum";
+import { IFilterSearch } from "src/app/pitch/model/interfaces";
+import * as Errors from "src/app/pitch/model/error-enum";
 
 @Component({
   selector: "app-filter",
@@ -58,6 +58,14 @@ export class FilterComponent implements OnInit {
     }
 
     if (
+      !this.isValidDate(this.startDateElementRef.nativeElement.value) ||
+      !this.isValidDate(this.endDateElementRef.nativeElement.value)
+    ) {
+      this.errorMessage = Errors.INVALID_DATES;
+      return;
+    }
+
+    if (
       !this.isValidDateRange(
         this.formateDate("StartsId"),
         this.formateDate("EndsId")
@@ -83,6 +91,19 @@ export class FilterComponent implements OnInit {
     }
 
     this.sendFilterCriteria();
+  }
+
+  isValidDate(strDate: string): boolean {
+    let result = true;
+    try {
+      const date1 = new Date(strDate);
+      if (date1.toString() === "Invalid Date") {
+        result = false;
+      }
+    } catch (err) {
+      result = false;
+    }
+    return result;
   }
 
   formateDate(strLabel: string): Date {

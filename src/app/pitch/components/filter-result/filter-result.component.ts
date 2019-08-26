@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { IPitch } from "src/app/core/model/interfaces";
+import { IPitch } from "src/app/pitch/model/interfaces";
 import { ChangeDetectionStrategy } from "@angular/core";
 
 @Component({
@@ -11,6 +11,7 @@ import { ChangeDetectionStrategy } from "@angular/core";
 export class FilterResultComponent implements OnInit {
   @Input() pitches: IPitch[] = [];
   @Input() exchangeRate: string;
+  @Input() convertedCurrency: string;
   constructor() {}
 
   ngOnInit() {}

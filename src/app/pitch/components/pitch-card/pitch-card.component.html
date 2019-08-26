@@ -37,7 +37,9 @@
       <div class="section-pitch">
         Converted Price:
         <span id="spConvertedPrice">{{
-          price | currencyConverterPipe: exchangeRate | currency: "EUR"
+          price
+            | currencyConverterPipe: exchangeRate
+            | currency: convertedCurrency
         }}</span>
       </div>
     </div>

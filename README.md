@@ -1,6 +1,6 @@
 # PitchFinder
 
-This project uses and API to search for pitches by defining the pitch Id and the start and end dates.
+This project uses an API End Point, Interceptor, Cache service to search for pitches by defining the pitch Id and the start and end dates.
 
 There is a validation whenever we click on search to make sure that:
 
@@ -10,7 +10,11 @@ There is a validation whenever we click on search to make sure that:
 
 If there is no data the result will be a 400 - No records
 
-If there is a server error, then a 404 - Not Found is displayed
+If there is a server error, then a Server error message is displayed
+
+The implemented cache service with and interceptor guarantees that in the event of two identical consecutive calls, the second call reads from the cache.
+
+Finally, the pagination allows us to navigate through the pages or to jump to the next set of pages `(<< and >>)`. The max number of records to display per page is 10, but configurable through the PitchesComponent variable `pageSize`. It is also possible to change the exchange rate and the converted currency by changing the variables `exchangeRate` and `convertedCurrency` inside the PitchesComponent.
 
 ## Development environment
 

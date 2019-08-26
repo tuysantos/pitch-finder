@@ -4,7 +4,7 @@ import {
   IResult,
   IPitch,
   ICriteria
-} from "src/app/core/model/interfaces";
+} from "src/app/pitch/model/interfaces";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs/internal/Subscription";
 import { PitchService } from "../../services/pitch.service";
@@ -23,6 +23,7 @@ export class PitchesComponent implements OnInit, OnDestroy {
   pageSize: number = 10;
   pagePitches: IPitch[] = [];
   exchangeRate: string = "1.13";
+  convertedCurrency: string = "EUR";
   errorsFound: boolean = false;
   serverErrorMessage: string = "";
 
@@ -34,18 +35,12 @@ export class PitchesComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.errorsFound = false;
-    this.serverErrorMessage = "";
-    this.pagePitches = [];
-    this.totalRecords = 0;
+    this.resetDefaults();
     this.hasParameters() ? this.refreshedData() : "";
   }
 
   filterData(data: IFilterSearch): void {
-    this.serverErrorMessage = "";
-    this.errorsFound = false;
-    this.pagePitches = [];
-    this.totalRecords = 0;
+    this.resetDefaults();
     this.route.navigate(["/pitches", data.id, data.starts, data.ends]);
     this.getPitches(data.id, data.starts, data.ends);
   }
@@ -73,7 +68,6 @@ export class PitchesComponent implements OnInit, OnDestroy {
       .pipe()
       .subscribe(
         (result: IResult) => {
-          console.log("result", result);
           this.pitches = result.data;
           this.criteria = result.meta;
 
@@ -89,9 +83,16 @@ export class PitchesComponent implements OnInit, OnDestroy {
         (err: any) => {
           this.pitches = [];
           this.errorsFound = true;
-          this.serverErrorMessage = "404 - Not Found";
+          this.serverErrorMessage = err;
         }
       );
+  }
+
+  resetDefaults(): void {
+    this.pagePitches = [];
+    this.totalRecords = 0;
+    this.errorsFound = false;
+    this.serverErrorMessage = "";
   }
 
   pageChanged(event) {
