@@ -7,8 +7,8 @@ import {
   EventEmitter
 } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { IFilterSearch } from "src/app/core/model/interfaces";
-import * as Errors from "src/app/core/model/error-enum";
+import { IFilterSearch } from "src/app/pitch/model/interfaces";
+import * as Errors from "src/app/pitch/model/error-enum";
 
 @Component({
   selector: "app-filter",

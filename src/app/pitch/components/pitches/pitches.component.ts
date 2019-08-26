@@ -4,7 +4,7 @@ import {
   IResult,
   IPitch,
   ICriteria
-} from "src/app/core/model/interfaces";
+} from "src/app/pitch/model/interfaces";
 import { Router, ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs/internal/Subscription";
 import { PitchService } from "../../services/pitch.service";

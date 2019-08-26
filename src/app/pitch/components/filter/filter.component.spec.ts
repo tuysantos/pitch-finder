@@ -3,8 +3,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { DebugElement } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { FilterComponent } from "./filter.component";
-import * as Errors from "src/app/core/model/error-enum";
-import { IFilterSearch } from "src/app/core/model/interfaces";
+import * as Errors from "src/app/pitch/model/error-enum";
+import { IFilterSearch } from "src/app/pitch/model/interfaces";
 
 describe("FilterComponent", () => {
   let component: FilterComponent;

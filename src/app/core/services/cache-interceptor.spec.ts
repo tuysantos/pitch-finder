@@ -4,7 +4,7 @@ import {
   HttpTestingController,
   HttpClientTestingModule
 } from "@angular/common/http/testing";
-import { HTTP_INTERCEPTORS, HttpResponse } from "@angular/common/http";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { CachingInterceptor } from "./cache-interceptor";
 import { PitchService } from "src/app/pitch/services/pitch.service";
 import { environment } from "src/environments/environment";

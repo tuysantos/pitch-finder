@@ -14,7 +14,7 @@ import { CurrencyConverterPipe } from "src/app/core/pipes/currencyConverter";
 import { RouterTestingModule } from "@angular/router/testing";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { PitchService } from "../../services/pitch.service";
-import { IResult } from "src/app/core/model/interfaces";
+import { IResult } from "src/app/pitch/model/interfaces";
 
 describe("PitchesComponent", () => {
   let component: PitchesComponent;

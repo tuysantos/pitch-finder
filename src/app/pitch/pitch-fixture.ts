@@ -1,4 +1,4 @@
-import { IResult, IPitch } from "../core/model/interfaces";
+import { IResult, IPitch } from "./model/interfaces";
 
 export const pitchMock: IResult = {
   meta: {

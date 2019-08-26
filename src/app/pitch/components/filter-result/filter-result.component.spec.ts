@@ -6,7 +6,7 @@ import { PitchCardComponent } from "../pitch-card/pitch-card.component";
 import { DateFormatPipe } from "src/app/core/pipes/dateFormat";
 import { DurationPipe } from "src/app/core/pipes/duration";
 import { CurrencyConverterPipe } from "src/app/core/pipes/currencyConverter";
-import { IPitch } from "src/app/core/model/interfaces";
+import { IPitch } from "src/app/pitch/model/interfaces";
 import { pitchMockResults } from "../../pitch-fixture";
 
 describe("FilterResultComponent", () => {

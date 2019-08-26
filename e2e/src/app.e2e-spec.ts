@@ -1,6 +1,6 @@
 import { AppPage } from "./app.po";
 import { browser, element, by } from "protractor";
-import * as errors from "src/app/core/model/error-enum";
+import * as errors from "src/app/pitch/model/error-enum";
 
 describe("workspace-project App", () => {
   let page: AppPage;

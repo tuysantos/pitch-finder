@@ -1,6 +1,6 @@
 import { RequestCacheService } from "./request-cache.service";
 import { HttpRequest, HttpResponse } from "@angular/common/http";
-import { IResult } from "../model/interfaces";
+import { IResult } from "../../pitch/model/interfaces";
 import { TestBed } from "@angular/core/testing";
 import { environment } from "src/environments/environment";
 

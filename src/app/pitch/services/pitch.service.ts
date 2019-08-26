@@ -53,7 +53,7 @@ import { Observable } from "rxjs/internal/Observable";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { map, catchError, share } from "rxjs/operators";
-import { IPitch, IResult } from "src/app/core/model/interfaces";
+import { IPitch, IResult } from "src/app/pitch/model/interfaces";
 import { of } from "rxjs/internal/observable/of";
 
 @Injectable({
