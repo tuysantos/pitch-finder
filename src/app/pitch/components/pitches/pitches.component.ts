@@ -73,7 +73,6 @@ export class PitchesComponent implements OnInit, OnDestroy {
       .pipe()
       .subscribe(
         (result: IResult) => {
-          console.log("result", result);
           this.pitches = result.data;
           this.criteria = result.meta;
 
@@ -89,7 +88,7 @@ export class PitchesComponent implements OnInit, OnDestroy {
         (err: any) => {
           this.pitches = [];
           this.errorsFound = true;
-          this.serverErrorMessage = "404 - Not Found";
+          this.serverErrorMessage = err;
         }
       );
   }

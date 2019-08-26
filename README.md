@@ -10,7 +10,7 @@ There is a validation whenever we click on search to make sure that:
 
 If there is no data the result will be a 400 - No records
 
-If there is a server error, then a 404 - Not Found is displayed
+If there is a server error, then a Server error message is displayed
 
 ## Development environment
 
