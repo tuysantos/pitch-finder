@@ -19,6 +19,7 @@ export class PitchCardComponent implements OnInit {
   @Input() availabilities: number;
   @Input() currency: string;
   @Input() exchangeRate: string;
+  @Input() convertedCurrency: string;
 
   constructor() {}
 

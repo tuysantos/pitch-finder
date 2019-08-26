@@ -31,6 +31,7 @@ describe("PitchCardComponent", () => {
     component.availabilities = 4;
     component.currency = "GBP";
     component.exchangeRate = "1.13";
+    component.convertedCurrency = "EUR";
     fixture.detectChanges();
   });
 
@@ -80,7 +81,7 @@ describe("PitchCardComponent", () => {
     expect(divElement.nativeElement.innerText).toBe("£9.90");
   });
 
-  it("Should display Converted Price in EUR with exchange rate of 1.13", () => {
+  it("Should display Converted Price in different currency with exchange rate of 1.13", () => {
     const divElement: DebugElement = fixture.debugElement.query(
       By.css("span[id=spConvertedPrice]")
     );

@@ -49,17 +49,11 @@ export class PaginationComponent implements OnInit {
     this.update();
   }
 
-  @Output() pageChanged: EventEmitter<number> = new EventEmitter();
+  @Output() pageChanged: EventEmitter<number> = new EventEmitter<number>();
 
   constructor() {}
 
   ngOnInit() {}
-
-  ngOnChanges(changePage: SimpleChange) {
-    this.pages = [];
-    this.pagerTotalItems = this.totalItems;
-    this.update();
-  }
 
   update() {
     if (this.pagerTotalItems && this.pagerPageSize) {
@@ -74,16 +68,6 @@ export class PaginationComponent implements OnInit {
     }
 
     this.isVisible = false;
-  }
-
-  previousNext1(direction: number, event?: MouseEvent) {
-    let page: number = this.currentPage;
-    if (direction == -1) {
-      if (page > 1) page--;
-    } else {
-      if (page < this.totalPages) page++;
-    }
-    this.changePage(page, event);
   }
 
   previousNext(direction: number, event?: MouseEvent) {

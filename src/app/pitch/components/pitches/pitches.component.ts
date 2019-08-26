@@ -23,6 +23,7 @@ export class PitchesComponent implements OnInit, OnDestroy {
   pageSize: number = 10;
   pagePitches: IPitch[] = [];
   exchangeRate: string = "1.13";
+  convertedCurrency: string = "EUR";
   errorsFound: boolean = false;
   serverErrorMessage: string = "";
 

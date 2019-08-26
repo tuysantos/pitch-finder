@@ -11,6 +11,7 @@ import { ChangeDetectionStrategy } from "@angular/core";
 export class FilterResultComponent implements OnInit {
   @Input() pitches: IPitch[] = [];
   @Input() exchangeRate: string;
+  @Input() convertedCurrency: string;
   constructor() {}
 
   ngOnInit() {}

@@ -73,6 +73,7 @@ describe("FilterResultComponent", () => {
     component = fixture.componentInstance;
     pitchesMock = new PitchesMock();
     component.exchangeRate = "1.13";
+    component.convertedCurrency = "EUR";
     component.pitches = pitchesMock.getPitches();
     fixture.detectChanges();
   });
