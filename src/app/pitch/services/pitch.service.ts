@@ -36,7 +36,6 @@ export class PitchService {
   }
 
   private handleError(error: HttpErrorResponse) {
-    console.error("server error:", error);
     if (error.error instanceof Error) {
       let errMessage = error.error;
       return Observable.throw(errMessage);

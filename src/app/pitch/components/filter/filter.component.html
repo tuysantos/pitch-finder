@@ -23,7 +23,12 @@
             #startDateRef
             (blur)="copyData('StartsId')"
           />*
-          <input type="hidden" value="" formControlName="StartsId" />
+          <input
+            id="HiddenStartsId"
+            type="hidden"
+            value=""
+            formControlName="StartsId"
+          />
         </div>
 
         <div class="form-group">
@@ -37,7 +42,12 @@
             #endDateRef
             (blur)="copyData('EndsId')"
           />*
-          <input type="hidden" value="" formControlName="EndsId" />
+          <input
+            id="HiddenEndsId"
+            type="hidden"
+            value=""
+            formControlName="EndsId"
+          />
         </div>
 
         <button
