@@ -1,105 +1,89 @@
 import { AppPage } from "./app.po";
 import { browser, element, by } from "protractor";
-import * as errors from "src/app/pitch/model/error-enum";
 
 describe("workspace-project App", () => {
   let page: AppPage;
+  let pitchId: any;
+  let startDate: any;
+  let endDate: any;
   const EC = browser.ExpectedConditions;
 
   beforeEach(() => {
     page = new AppPage();
   });
 
-  it("should return invalid search - mandatory fields", async () => {
-    page.navigateTo("/pitches");
-    let pitchId = page.getPitchId();
-    pitchId.sendKeys("92300");
+  async function setSearchCriteria(pitch_Id, start_date, end_date) {
+    pitchId = page.getPitchId();
+    pitchId.sendKeys(pitch_Id);
 
-    let startDate = page.getStartDate();
-    startDate.sendKeys("2018-01-09");
+    startDate = page.getStartDate();
+    startDate.sendKeys(start_date);
 
-    let endDate = page.getEndDate();
-    endDate.sendKeys("2018-01-15");
+    endDate = page.getEndDate();
+    endDate.sendKeys(end_date);
 
     browser.sleep(1000);
+    await startDate.click();
+    browser.sleep(100);
+    await endDate.click();
+    browser.sleep(100);
+    await pitchId.click();
+    browser.sleep(100);
+  }
+
+  it("should return invalid search - mandatory fields", async () => {
+    page.navigateTo("/pitches");
+    await setSearchCriteria("", "2018-01-09", "2018-01-15");
     await page.getBtnSearch().click();
-    browser.sleep(2000);
-    expect(page.getErrorFilter()).toEqual(errors.MANDATORY_FIELDS);
+    browser.sleep(100);
+    let message = page.getErrorFilter().getText();
+    browser.sleep(3000);
+    expect(message).toEqual("All fields are mandatory");
   });
 
   it("should return invalid pitch Id", async () => {
     page.navigateTo("/pitches");
-    let pitchId = page.getPitchId();
-    pitchId.sendKeys("RRRRR34");
-
-    let startDate = page.getStartDate();
-    startDate.sendKeys("2018-01-09");
-
-    let endDate = page.getEndDate();
-    endDate.sendKeys("2018-01-15");
-
-    browser.sleep(1000);
+    await setSearchCriteria("RRRRR34", "2018-01-09", "2018-01-15");
     await page.getBtnSearch().click();
-    browser.sleep(2000);
-    expect(page.getErrorFilter()).toEqual(errors.INVALID_PITCH_ID);
+    browser.sleep(100);
+    let message = page.getErrorFilter().getText();
+    browser.sleep(3000);
+    expect(message).toEqual("Invalid Pitch Id");
   });
 
   it("should return invalid date range", async () => {
     page.navigateTo("/pitches");
-    let pitchId = page.getPitchId();
-    pitchId.sendKeys("32990");
-
-    let startDate = page.getStartDate();
-    startDate.sendKeys("2018-01-02");
-
-    let endDate = page.getEndDate();
-    endDate.sendKeys("2018-01-28");
-
-    browser.sleep(1000);
+    await setSearchCriteria("32990", "2018-01-02", "2018-01-28");
     await page.getBtnSearch().click();
-    browser.sleep(2000);
-    expect(page.getErrorFilter()).toEqual(errors.INVALID_DATE_RANGE);
+    browser.sleep(100);
+    let message = page.getErrorFilter().getText();
+    browser.sleep(3000);
+    expect(message).toEqual("Date range cannot exceed 14 days");
   });
 
-  it("should return error date2 should be greather", async () => {
+  it("should return error date2 should be greather than date1", async () => {
     page.navigateTo("/pitches");
-    let pitchId = page.getPitchId();
-    pitchId.sendKeys("32990");
-
-    let startDate = page.getStartDate();
-    startDate.sendKeys("2018-01-21");
-
-    let endDate = page.getEndDate();
-    endDate.sendKeys("2018-01-15");
-
-    browser.sleep(1000);
+    await setSearchCriteria("32990", "2018-01-21", "2018-01-15");
     await page.getBtnSearch().click();
-    browser.sleep(2000);
-    expect(page.getErrorFilter()).toEqual(errors.END_DATE_GREATER);
+    browser.sleep(100);
+    let message = page.getErrorFilter().getText();
+    browser.sleep(3000);
+    expect(message).toEqual("End date must be greater or equal to start date");
   });
 
   it("should load data from the url parameters", async () => {
     page.navigateTo("/pitches/32990/2018-01-09/2018-01-15");
+    browser.sleep(1000);
     let pitches = await page.getPitches();
-    expect(pitches.length).toBeGreaterThan(0);
-  });
-
-  it("should go to next page", async () => {
-    page.navigateTo("/pitches/32990/2018-01-09/2018-01-15");
-    browser.sleep(5000);
-
-    await page.getPages()[1].click();
-    browser.sleep(2000);
-
-    let pitches = await page.getPitches();
+    browser.sleep(3000);
     expect(pitches.length).toBeGreaterThan(0);
   });
 
   it("should return no data", async () => {
-    page.navigateTo("/pitches/111111/2018-01-09/2018-01-15");
-    browser.sleep(5000);
-
+    page.navigateTo("/pitches/1111/2018-01-09/2018-01-15");
+    browser.sleep(1000);
     let pitches = await page.getPitches();
+    browser.sleep(3000);
     expect(pitches.length).toBe(0);
   });
 });

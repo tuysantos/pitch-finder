@@ -14,11 +14,19 @@ export class AppPage {
   }
 
   getStartDate() {
-    return element(by.id("StartsId"));
+    return element(by.id("startsId"));
   }
 
   getEndDate() {
-    return element(by.id("EndsId"));
+    return element(by.id("endsId"));
+  }
+
+  getHiddenStartDate() {
+    return element(by.id("HiddenStartsId"));
+  }
+
+  getHiddenEndDate() {
+    return element(by.id("HiddenEndsId"));
   }
 
   getBtnSearch() {
@@ -38,8 +46,10 @@ export class AppPage {
   }
 
   getPages() {
-    return browser.driver.findElements(by.css("ul li")).then(elems => {
-      return elems;
-    });
+    return browser.driver
+      .findElements(by.id("div app-pagination pageElement"))
+      .then(elems => {
+        return elems;
+      });
   }
 }
