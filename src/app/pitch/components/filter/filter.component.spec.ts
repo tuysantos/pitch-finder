@@ -86,7 +86,7 @@ describe("FilterComponent", () => {
     expect(spanElement.nativeElement.innerText).toBe(Errors.MANDATORY_FIELDS);
   });
 
-  it("Should display error message 'Invalid Slot Id'", () => {
+  it("Should display an error message 'Invalid Slot id'", () => {
     componentForm = new ComponentForm();
     componentForm.init();
     componentForm.resetForm();
